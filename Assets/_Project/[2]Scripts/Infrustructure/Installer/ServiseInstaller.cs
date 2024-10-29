@@ -1,3 +1,4 @@
+using Feature.Quest;
 using Infrustructure.Service.CoroutineController;
 using Infrustructure.Service.SceneLoader;
 using Runtime.Curtain;
@@ -20,6 +21,16 @@ namespace Infrustructure.Installer
             BindCurtain();
 
             BindSceneLoader();
+
+            BindQuestSystem();
+        }
+
+        private void BindQuestSystem()
+        {
+            this.Container
+                .Bind<QuestHandler>()
+                .ToSelf()
+                .AsSingle();
         }
 
         private void BindSceneLoader()

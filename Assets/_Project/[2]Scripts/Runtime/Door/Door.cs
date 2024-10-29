@@ -1,3 +1,4 @@
+using Helper;
 using System.Collections;
 using UnityEngine;
 
@@ -80,9 +81,4 @@ namespace Runtime.Door
             }
         }
     }
-}
-
-public static class Tags
-{
-    public const string Player = "Player";
 }
