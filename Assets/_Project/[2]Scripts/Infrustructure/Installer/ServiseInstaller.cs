@@ -1,8 +1,10 @@
 using Feature.Quest;
 using Infrustructure.Service.CoroutineController;
 using Infrustructure.Service.Factory;
+using Infrustructure.Service.Input;
 using Infrustructure.Service.SceneLoader;
 using Runtime.Curtain;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +18,8 @@ namespace Infrustructure.Installer
 
         public override void InstallBindings()
         {
+            BindInput();
+
             BindCoroutineRunner();
 
             BindFactory();
@@ -25,6 +29,13 @@ namespace Infrustructure.Installer
             BindSceneLoader();
 
             BindQuestSystem();
+        }
+
+        private void BindInput()
+        {
+            this.Container.Bind<IInput>()
+                .To<DesctopInput>()
+                .AsSingle();
         }
 
         private void BindFactory()
