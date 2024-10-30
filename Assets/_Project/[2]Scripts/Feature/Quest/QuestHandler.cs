@@ -1,3 +1,4 @@
+using Infrustructure.Service.Factory;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,9 +11,9 @@ namespace Feature.Quest
 
         private List<Quest> _quests = new List<Quest>();
 
-        private QuestHandler()
+        private QuestHandler(IFactory factory)
         {
-            _questConfigs = Resources.LoadAll<QuestConfig>("Quest").ToList();
+            _questConfigs = factory.GetQuestConfigs();
 
             InitQuests();
         }

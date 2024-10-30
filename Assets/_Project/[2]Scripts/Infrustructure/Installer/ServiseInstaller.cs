@@ -1,8 +1,8 @@
 using Feature.Quest;
 using Infrustructure.Service.CoroutineController;
+using Infrustructure.Service.Factory;
 using Infrustructure.Service.SceneLoader;
 using Runtime.Curtain;
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -18,11 +18,21 @@ namespace Infrustructure.Installer
         {
             BindCoroutineRunner();
 
+            BindFactory();
+
             BindCurtain();
 
             BindSceneLoader();
 
             BindQuestSystem();
+        }
+
+        private void BindFactory()
+        {
+            this.Container
+                .Bind<Service.Factory.IFactory>()
+                .To<Factory>()
+                .AsSingle();
         }
 
         private void BindQuestSystem()
