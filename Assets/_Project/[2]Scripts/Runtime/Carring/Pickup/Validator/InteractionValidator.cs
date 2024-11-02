@@ -5,7 +5,7 @@ namespace Runtime.Carring
     public class InteractionValidator : IInteractionValidator
     {
         private const float rayDist = 5f;
-        private readonly IContainer _container;
+        private readonly IContainer _playerContainer;
         private readonly Camera _camera;
         private IInteractable _findInteractable;
         private IContainer _findContainer;
@@ -17,13 +17,13 @@ namespace Runtime.Carring
         {
 
             _camera = Camera.main;
-            _container = container;
+            _playerContainer = container;
         }
 
 
         public bool CheckPickable()
         {
-            if (!_container.HasEmptySlot())
+            if (!_playerContainer.HasEmptySlot())
                 return false;
 
             Ray ray = _camera.ScreenPointToRay(new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2));
@@ -44,6 +44,9 @@ namespace Runtime.Carring
 
         public bool CheckContainer()
         {
+            if (_playerContainer.HasEmptySlot())
+                return false;
+
             Ray ray = _camera.ScreenPointToRay(new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2));
 
 
