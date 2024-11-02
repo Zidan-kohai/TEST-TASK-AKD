@@ -3,6 +3,7 @@ using Infrustructure.Service.CoroutineController;
 using Infrustructure.Service.Factory;
 using Infrustructure.Service.Input;
 using Infrustructure.Service.SceneLoader;
+using Runtime.Carring;
 using Runtime.Curtain;
 using System;
 using UnityEngine;
@@ -29,6 +30,7 @@ namespace Infrustructure.Installer
             BindSceneLoader();
 
             BindQuestSystem();
+
         }
 
         private void BindInput()
