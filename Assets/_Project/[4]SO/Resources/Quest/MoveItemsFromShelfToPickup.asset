@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MoveItemsFromShelfToPickup
   m_EditorClassIdentifier: 
   <QuestType>k__BackingField: 0
-  <MaxProgress>k__BackingField: 8
+  <MaxProgress>k__BackingField: 7
   <Description>k__BackingField: "Move the items on the shelf to pick\t"
   <RewardText>k__BackingField: 

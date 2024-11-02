@@ -1,6 +1,8 @@
+using Feature.Quest;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 namespace Runtime.Carring
 {
@@ -8,8 +10,16 @@ namespace Runtime.Carring
     {
         [SerializeField] private List<Cell> _freePositions;
 
+        private QuestHandler _questHandler;
+
         public IInteractable GetCurrentInteractable => 
             _freePositions.FirstOrDefault(x => x.Interactable != null).Interactable;
+
+        [Inject]
+        public void Constructor(QuestHandler questHandler)
+        {
+            _questHandler = questHandler;
+        }
 
         public bool HasEmptySlot()
         {
@@ -30,6 +40,11 @@ namespace Runtime.Carring
             tr.localRotation = Quaternion.identity;
 
             emptyCell.Interactable = interactable;
+
+            if(_questHandler.TryGetQuests(QuestType.moveItemsFromShelfToPickup, out Feature.Quest.Quest quest))
+            {
+                quest.Increament(1);
+            }
         }
 
         public void Remove(IInteractable interactable)
